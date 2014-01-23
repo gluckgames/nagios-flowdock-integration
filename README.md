@@ -1,3 +1,7 @@
+# Post nagios notifications to flowdock as messages
+
+
+```
 define command {
         command_name notify-service-by-flowdock
         command_line curl -XPOST -H "content-type:application/json" -d '{"content":"Notification Type: $NOTIFICATIONTYPE$\n\nService: $SERVICEDESC$\nHost: $HOSTALIAS$\nAddress: $HOSTADDRESS$\nState: $SERVICESTATE$\n\nAdditional Info:\n\n$SERVICEOUTPUT$","external_user_name": "Nagios"}' https://api.flowdock.com/v1/messages/chat/YOUR_FLOW_API_TOKEN
@@ -19,3 +23,4 @@ define contact{
         host_notification_commands      notify-host-by-flowdock
         service_notification_commands   notify-service-by-flowdock
 }
+```
